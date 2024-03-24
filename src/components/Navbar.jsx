@@ -10,7 +10,7 @@ const Navbar = () => {
       <a href="#medicine-groups">İlaç Grupları</a>
       <a href="#active-ingredients">İlaç Etken Maddeleri</a>
       <Link to="/drugsearch">Drug Search(Yabancı Dilde API)</Link>
-      <a href="#pharmacies">Eczaneler</a>
+      <Link to="/Eczaneler">Eczaneler</Link>
       <Link to="/nobetcieczaneler">Nobetci Eczaneler</Link>
       <Link to="/register">Kayıt </Link>
       <Link to="/login">Giriş Yap</Link>

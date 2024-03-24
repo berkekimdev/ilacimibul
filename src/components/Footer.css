@@ -1,13 +1,16 @@
 .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f0f0f0;
-    color: #333;
-  }
-  
-  .footer-left, .footer-right {
-    flex: 1;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  color: #333;
+  position: fixed; /* Footer'ın sabit konumda kalmasını sağlar */
+  bottom: 0; /* Footer'ın ekranın altında kalmasını sağlar */
+  width: 100%; /* Footer'ın tam ekran genişliğinde olmasını sağlar */
+ }
+ 
+ .footer-left, .footer-right {
+  flex: 1;
+ }
+ 

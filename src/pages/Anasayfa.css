@@ -1,0 +1,30 @@
+.container {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+       "alan1 alan3"
+       "alan2 alan3";
+    
+    padding: 0; /* Burası değiştirildi */
+    width: 100%;
+  }
+  
+  .alan1 {
+    grid-area: alan1;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .alan2 {
+    grid-area: alan2;
+    background-color: #e0e0e0;
+    padding: 20px;
+  }
+  
+  .alan3 {
+    grid-area: alan3;
+    background-color: #d0d0d0;
+    padding: 20px;
+  }
+  

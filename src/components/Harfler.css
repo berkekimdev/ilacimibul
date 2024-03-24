@@ -1,0 +1,14 @@
+.harfler-kutu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1px;
+    background-color: #f8f9fa;
+   }
+   
+   .harf {
+    padding: 1px;
+    margin: 1px;
+    text-decoration: none;
+    color: #333;
+   }

@@ -1,0 +1,50 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #1c2719;
+  }
+  
+  .logo {
+    margin-right: 20px; /* Logo, sola yapışık olacak şekilde ayarla */
+    width: 80px; /* Logo boyutunu küçült */
+    
+  }
+  
+  .header-image {
+    width: 360px !important; /* Header image genişliğini ayarla */
+    height: 100px !important; 
+    margin-left: auto;
+    margin-right: -60px;
+    padding: 0 200px;
+    
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px; /* Sağ kenar boşluğu */
+    background: #fff; /* Arka plan rengi, gerekiyorsa değiştirin */
+    border-radius: 4px; /* Kenar yuvarlaklığı */
+    padding: 0 0px; /* Sol ve sağ kenar boşluğu */
+}
+  
+.search-input {
+    padding: 8px;
+    width: 400px; /* Arama kutusunun genişliği */
+    border: none; /* Kenarlık kaldır */
+    outline: none; /* Odaklanma çerçevesi kaldır */
+    flex-grow: 1; /* Arama kutusunun genişliğini otomatik olarak ayarlar */
+}
+  
+  .search-button {
+    padding: 8px 40px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Butonun arka plan rengi */
+    color: white; /* Buton yazı rengi */
+    border: none; /* Kenarlık kaldır */
+    border-radius: 0 4px 4px 0; /* Sağ üst ve sağ alt köşeleri yuvarlaklaştır */
+    margin-left: 20px; /* Sol kenar boşluğu */
+}
