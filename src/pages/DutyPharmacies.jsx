@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './DutyPharmacies.css';
+import { FaSearchLocation } from "react-icons/fa";
 
 function DutyPharmacies() {
   const [city, setCity] = useState('');
@@ -28,7 +30,7 @@ function DutyPharmacies() {
         onChange={(e) => setCity(e.target.value)}
         placeholder="Şehir ismi girin"
       />
-      <button onClick={fetchPharmacies}>Nöbetçi Eczaneleri Bul</button>
+      <button onClick={fetchPharmacies} className="icon"><FaSearchLocation /></button>
       <div>
         {pharmacies.length > 0 ? (
           <ul>

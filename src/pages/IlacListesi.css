@@ -1,0 +1,47 @@
+/* IlacListesi.css */
+
+.ilac-listesi {
+ margin-top: 20px;
+ width: 100%;
+ overflow-x: auto; /* Tablo genişliği için yatay kaydırma çubuğu gösterir */
+}
+
+table {
+ border-collapse: collapse;
+ width: 100%;
+ font-family: Arial, sans-serif; /* Font ailesi */
+}
+
+th, td {
+ border: 1px solid #dddddd;
+ text-align: left;
+ padding: 8px;
+}
+
+th {
+ background-color: #f2f2f2;
+ font-weight: bold; /* Başlıkların kalınlaştırılması */
+}
+
+tr:nth-child(even) {
+ background-color: #f9f9f9; /* Çizgili satırlar için arka plan rengi */
+}
+
+tr:hover {
+ background-color: #e9e9e9; /* Fare ile üzerine gelindiğinde satırın arka plan rengi */
+}
+
+.ilac-listesi button {
+ background-color: #4CAF50;
+ color: white;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ padding: 8px 12px;
+ font-size: 14px; /* Buton metninin boyutu */
+ margin-top: 5px; /* Butonun üst kenar boşluğu */
+}
+
+.ilac-listesi button:hover {
+ background-color: #45a049; /* Fare ile üzerine gelindiğinde butonun arka plan rengi */
+}

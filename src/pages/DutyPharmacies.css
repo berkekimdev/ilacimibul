@@ -1,0 +1,19 @@
+button {
+    padding: 10px 20px; /* Buton içeriğine boşluk ekleyin */
+ margin-top: 20px; /* Butonlar arasında daha fazla boşluk bırakın */
+ background-color: #4CAF50; /* Buton arka plan rengi yeşil */
+ color: white; /* Buton metin rengi beyaz */
+ border: none; /* Kenarlık kaldırın */
+ border-radius: 4px; /* Buton köşelerini yuvarlayın */
+ cursor: pointer; /* Cursor tipi olarak işaretçi kullanın */
+ transition: background-color 0.3s; /* Arka plan rengi geçiş efekti */
+ font-size: 16px; /* Buton metin boyutunu ayarlayın */
+ margin-left: 50px; /* Butonların sol kenar boşluğunu ayarlayın */
+}
+
+.icon svg {
+
+    font-size: 24px;
+    margin-left: 5px; /* İkonu sağa 5 piksel kaydırır */
+    margin-top: 25px; /* İkonu aşağı 5 piksel kaydırır */
+}

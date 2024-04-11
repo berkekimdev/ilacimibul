@@ -8,9 +8,11 @@
   position: fixed; /* Footer'ın sabit konumda kalmasını sağlar */
   bottom: 0; /* Footer'ın ekranın altında kalmasını sağlar */
   width: 100%; /* Footer'ın tam ekran genişliğinde olmasını sağlar */
+  margin-top: 20px;
  }
  
  .footer-left, .footer-right {
   flex: 1;
  }
+ 
  

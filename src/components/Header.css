@@ -3,22 +3,22 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: #1c2719;
+    background-color: #18453B;
   }
   
   .logo {
     margin-right: 20px; /* Logo, sola yapışık olacak şekilde ayarla */
-    width: 80px; /* Logo boyutunu küçült */
+    width: 100px; /* Logo boyutunu küçült */
     
   }
   
   .header-image {
-    width: 360px !important; /* Header image genişliğini ayarla */
-    height: 100px !important; 
+    
     margin-left: auto;
     margin-right: -60px;
     padding: 0 200px;
-    
+    z-index: 1;
+    position: relative;
   }
   
   .search-container {

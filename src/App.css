@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 #root {
   width: 100%; /* Ekranın tam genişliğini kaplaması için */
   margin: 0 auto;
@@ -17,5 +20,11 @@
   padding: 0; /* İçeriğe padding ekleyin */
   width: 100%; /* Ekranın tam genişliğini kaplaması için */
 }
-
-/* Diğer stiller aynı kalabilir */
+.main-content {
+  flex: 1;
+  background-repeat: no-repeat;
+  background-position: center top; /* Arka plan görüntüsünü merkezde tutar */
+  background-size: 100% 120%; /* Görüntünün tamamının görünmesini sağlar, ama tam ekranı kaplamayabilir */
+  width: 100%; /* Ekranın tam genişliğini kaplaması için doğru birim ile ayarlanmalı */
+  min-height: 100vh; /* Div'in en az tam ekran boyutunda olmasını sağlar */
+}
