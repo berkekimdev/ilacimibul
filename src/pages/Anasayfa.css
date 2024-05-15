@@ -1,31 +1,57 @@
 .container {
-    display: grid;
-    grid-template-columns: 75% 25%; /* Sol sütunun %25'ini, sağ sütunun %75'ini kapla */
-    grid-template-rows: auto auto;
-    grid-template-areas: 
-       "alan1 alan3"
-       "alan2 alan3";
-    padding: 0;
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    margin: 0 auto; /* Dikey hizalama için */
+    height: calc(100vh - var(--header-height) - var(--navbar-height) - 60px); /* Footer'ın yüksekliğini çıkar */
+    margin-bottom: 20px; /* İçerik için padding */
+    box-sizing: border-box;
+}
+
+.svg-container {
+    flex:3;
+    width: 75%; /* SVG için ayrılan genişlik */
+    height: 100%; /* Tam yükseklik */
+    box-sizing: border-box;
+}
+
+.svg-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* SVG'nin kapsayıcıya tam sığması */
+}
+
+.content {
+    flex:1;
+    width: 25%; /* İçerik için ayrılan genişlik */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* İçerikleri başa ve sona yasla */
+    align-items: flex-end; /* İçerikleri sağa yasla */
+    height: 100%; /* Tam yükseklik */
+    box-sizing: border-box;
+}
+
+.alan1, .alan2, .alan3 {
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%; /* Tam genişlik kullanımı */
+    
 }
 
 .alan1 {
-    grid-area: alan1;
-    background-color: #f0f0f0;
-    padding: 20px;
+    height: 50%; /* Toplam yüksekliğin %50'si */
+    background-color: #f8f9fa;
+    box-sizing: border-box;
 }
 
 .alan2 {
-    grid-area: alan2;
-    background-color: #e0e0e0;
-    padding: 20px;
-    margin-top: 10px;
+    height: 30%; /* Toplam yüksekliğin %30'u */
+    background-color: #e9ecef;
+    box-sizing: border-box;
 }
 
 .alan3 {
-    grid-area: alan3;
-    background-color: #d0d0d0;
-    padding: 20px;
-    margin-left: 10px;
+    height: 20%; /* Toplam yüksekliğin %20'si */
+    background-color: #dee2e6;
+    box-sizing: border-box;
 }

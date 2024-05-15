@@ -6,7 +6,7 @@ import { BsCapsule } from "react-icons/bs";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <BsCapsule />
+      <BsCapsule  />
       <Link to="/">Anasayfa</Link>
       <Link to="/Ilaclar">İlaçlar</Link>
       <Link to="/IlacGrubu">IlacGrubu</Link>

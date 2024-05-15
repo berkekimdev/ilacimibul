@@ -14,7 +14,7 @@ import Harfler from './components/Harfler';
 import Ilaclar from './pages/Ilaclar';
 import IlacGrubu from './pages/IlacGrubu';
 import EczaneListesi from './pages/EczaneListesi';
-import backgroundImage from './images/backgroundpng.png';
+import backgroundImage from './images/sihirli.svg';
 import './App.css';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
         <Navbar />
         <Harfler />
         {/* Arka plan resmi için kullanılacak div'i ve Routes bileşenini sar */}
-        <div className="main-content" style={{backgroundImage: `url(${backgroundImage})`, minHeight: '100vh'}}>
+        <div className="main-content">
           <Routes>
             <Route path="/" element={<Anasayfa />} />
             <Route path="/login" element={<Login />} />

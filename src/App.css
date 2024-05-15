@@ -11,8 +11,9 @@
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  width: 100%; /* Ekranın tam genişliğini kaplaması için */
+  min-height: 100vh; /* Ekranın tam boyutunu kaplar */
+  width: 100%;
+  padding-bottom: 60px; /* Footer yüksekliği kadar alt padding */
 }
 
 .content {
@@ -20,11 +21,11 @@
   padding: 0; /* İçeriğe padding ekleyin */
   width: 100%; /* Ekranın tam genişliğini kaplaması için */
 }
-.main-content {
-  flex: 1;
+..main-content {
+  flex-grow: 1; /* Tüm kullanılabilir alanı kaplar */
   background-repeat: no-repeat;
-  background-position: center top; /* Arka plan görüntüsünü merkezde tutar */
-  background-size: 100% 120%; /* Görüntünün tamamının görünmesini sağlar, ama tam ekranı kaplamayabilir */
-  width: 100%; /* Ekranın tam genişliğini kaplaması için doğru birim ile ayarlanmalı */
-  min-height: 100vh; /* Div'in en az tam ekran boyutunda olmasını sağlar */
+  background-position: center top;
+  background-size: cover; /* SVG'nin orantılı olarak genişlemesini sağlar */
+  width: 100%;
+  padding-bottom: var(--footer-height); /* Navbar yüksekliğini düşünerek yer ayarlayın */
 }
