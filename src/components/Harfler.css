@@ -1,16 +1,25 @@
+/* src/components/Harfler.css */
 .harfler-kutu {
-    width: 75%; /* Ekranın %75'ini kapla */
-    margin: 0 auto; /* Dikey hizalama için */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 1px;
-    background-color: #f8f9fa;
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1px;
+  background-color: #f8f9fa;
 }
 
 .harf {
-    padding: 5px 10px; /* İçeriklerin etrafındaki boşlukları ayarla */
-    text-decoration: none; /* Alt çizgiyi kaldır */
-    color: #333; /* Metin rengi */
-    margin: 5px; /* İçer */
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #333;
+  margin: 5px;
+  background-color: #28a745;
+  color: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.harf:hover {
+  background-color: #218838;
 }
