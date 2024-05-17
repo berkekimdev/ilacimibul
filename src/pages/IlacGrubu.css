@@ -1,57 +1,36 @@
-/* IlacGrubu.css */
-
-.ilac-gruplari {
- display: grid;
- grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
- gap: 20px;
- padding: 20px;
-}
-
-.ilac-grup-butonu {
- background-color: #4CAF50;
- color: white;
- border: none;
- border-radius: 4px;
- padding: 10px 20px;
- cursor: pointer;
- font-size: 16px;
- transition: background-color 0.3s ease;
-}
-
-.ilac-grup-butonu:hover {
- background-color: #45a049;
-}
-
-.modal {
- display: none; /* Modal varsayılan olarak gizlenir */
- position: fixed; /* Modal, sayfanın tamamını kaplar */
- z-index: 1; /* Modal, diğer içeriklerin üzerinde görünür */
- left: 0;
- top: 0;
- width: 100%; /* Modal, tam genişlik ve yükseklik */
- height: 100%;
- overflow: auto; /* İçeriği aştığında kaydırma çubuğu göster */
- background-color: rgba(0,0,0,0.4); /* Arka plan rengi ve opaklık */
+.ilac-gruplari-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .ilac-grup-kutu {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
- background-color: #fefefe;
- margin: 15% auto; /* Modal içeriği, sayfanın ortasında yerleştirilir */
- padding: 20px;
- border: 1px solid #888;
- width: 80%; /* Modal içeriği, genişliği */
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
 }
 
-.close {
- color: #aaa;
- float: right;
- font-size: 28px;
- font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
- color: black;
- text-decoration: none;
- cursor: pointer;
+.close-button {
+    float: right;
+    cursor: pointer;
 }

@@ -16,6 +16,7 @@ import Ilaclar from './pages/Ilaclar';
 import IlacGrubu from './pages/IlacGrubu';
 import EczaneListesi from './pages/EczaneListesi';
 import DrugEczaneListesi from './pages/DrugEczaneListesi';
+import IlacGrubuListele from './pages/IlacGrubunaGoreListele';
 import './App.css';
 
 
@@ -37,6 +38,7 @@ function App() {
               <Route path="/IlacGrubu" element={<IlacGrubu />} />
               <Route path="/EnYakinEczaneler" element={<EczaneListesi />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/ilacgrubunagorelistele/:grup" element={<IlacGrubuListele />} />
               <Route path="/drugsearch" element={<DrugSearch />} />
               <Route path="/drugeczanelistesi/:drugId" element={<DrugEczaneListesi />} />
               <Route path="/nobetcieczaneler" element={<DutyPharmacies />} />
