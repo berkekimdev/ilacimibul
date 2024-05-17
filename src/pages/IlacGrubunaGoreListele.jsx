@@ -1,30 +1,84 @@
+// src/pages/IlacGrubunaGoreListele.jsx
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
+import './IlacGrubunaGoreListele.css';
+
+const IlacListesi = ({ ilaclar }) => {
+  const navigate = useNavigate();
+
+  const eczanedeBul = (ilacId) => {
+    navigate(`/drugeczanelistesi/${ilacId}`);
+  };
+
+  return (
+    <div className="ilac-listesi">
+      <table>
+        <thead>
+          <tr>
+            <th>İlaç Adı</th>
+            <th>İlaç Grubu</th>
+            <th>İlaç Etken Maddesi</th>
+            <th>İlaç Stoğu</th>
+            <th>Eczanede Bul</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ilaclar.map((ilac, index) => (
+            <tr key={index}>
+              <td>{ilac.ilacAdi}</td>
+              <td>{ilac.ilacGrubu}</td>
+              <td>{ilac.ilacEtkenMaddesi}</td>
+              <td>{ilac.totalStock}</td>
+              <td>
+                <button onClick={() => eczanedeBul(ilac.id)}>Eczanede Bul</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 const IlacGrubunaGoreListele = () => {
-    const { ilacGrubu } = useParams();
-    const [rawData, setRawData] = useState('');
+  const [ilaclar, setIlaclar] = useState([]);
+  const { ilacGrubu } = useParams();
 
-    useEffect(() => {
-        const ilaclariGetir = async () => {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/drugs/byGroup?group=${encodeURIComponent(ilacGrubu)}`);
-                setRawData(JSON.stringify(response.data, null, 2)); // Gelen veriyi ham formatta sakla
-            } catch (error) {
-                console.error('İlaç listesi alınırken bir hata oluştu:', error);
-            }
-        };
+  useEffect(() => {
+    const fetchIlaclar = async () => {
+      try {
+        // İlaçları ilaç grubuna göre çek
+        const response = await axios.get(`http://localhost:8080/api/drugs/byGroup?group=${ilacGrubu}`);
+        const fetchedIlaclar = response.data;
 
-        ilaclariGetir();
-    }, [ilacGrubu]);
+        // Tüm ilaç stoklarını çek
+        const stocksResponse = await axios.get(`http://localhost:8080/api/drugstocks`);
+        const allStocks = stocksResponse.data;
 
-    return (
-        <div>
-            <h1>{decodeURIComponent(ilacGrubu)} Grubundaki İlaçlar</h1>
-            <pre>{rawData}</pre> {/* Ham veriyi sayfaya yazdır */}
-        </div>
-    );
+        // İlaçların toplam stoklarını hesapla
+        const ilaclarWithStock = fetchedIlaclar.map(ilac => {
+          const totalStock = allStocks
+            .filter(stock => stock.drugId === ilac.id)
+            .reduce((sum, stock) => sum + stock.quantity, 0);
+          return { ...ilac, totalStock };
+        });
+
+        setIlaclar(ilaclarWithStock);
+      } catch (error) {
+        console.error('İlaçları çekerken hata oluştu:', error);
+      }
+    };
+
+    fetchIlaclar();
+  }, [ilacGrubu]);
+
+  return (
+    <div>
+      <h1>{ilacGrubu} Grubundaki İlaçlar</h1>
+      <IlacListesi ilaclar={ilaclar} />
+    </div>
+  );
 };
 
 export default IlacGrubunaGoreListele;

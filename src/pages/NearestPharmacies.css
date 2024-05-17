@@ -1,0 +1,51 @@
+/* src/components/NearestPharmacies.css */
+.nearest-pharmacies-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nearest-pharmacies-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .pharmacy-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pharmacy-item {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pharmacy-item h3 {
+    margin: 0 0 10px;
+  }
+  
+  .pharmacy-item p {
+    margin: 5px 0;
+  }
+  
+  .pharmacy-item a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .pharmacy-item a:hover {
+    background-color: #45a049;
+  }
+  

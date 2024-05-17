@@ -1,46 +1,23 @@
+/* src/components/IlacGrubu.css */
 .ilac-gruplari-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
   padding: 20px;
 }
 
 .ilac-grup-kutu {
-  background-color: #28a745; /* Yeşil renk */
-  color: #ffffff; /* Beyaz renk */
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer; /* Tıklanabilirlik göstergesi */
-  border: none; /* Varsayılan buton kenarlığını kaldır */
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
+  margin: 5px; /* Kutucukların arasına boşluk bırakmak için */
 }
 
 .ilac-grup-kutu:hover {
-  background-color: #218838; /* Hover efekti için koyu yeşil */
-}
-
-.modal-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 50%;
-}
-
-.close-button {
-  float: right;
-  cursor: pointer;
+  background-color: #218838;
 }

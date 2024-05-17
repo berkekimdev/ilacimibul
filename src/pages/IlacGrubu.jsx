@@ -1,3 +1,4 @@
+// src/components/IlacGrubu.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './IlacGrubu.css'; // CSS dosyasını dahil et
@@ -20,8 +21,22 @@ const IlacGrubu = () => {
 
     const handleGroupClick = (group) => {
         axios.get(`http://localhost:8080/api/drugs/byGroup?group=${encodeURIComponent(group)}`)
-            .then(response => {
-                setDrugs(response.data);
+            .then(async (response) => {
+                const fetchedDrugs = response.data;
+
+                // Tüm ilaç stoklarını çek
+                const stocksResponse = await axios.get('http://localhost:8080/api/drugstocks');
+                const allStocks = stocksResponse.data;
+
+                // İlaçların toplam stoklarını hesapla
+                const drugsWithStock = fetchedDrugs.map(drug => {
+                    const totalStock = allStocks
+                        .filter(stock => stock.drugName === drug.ilacAdi)
+                        .reduce((sum, stock) => sum + stock.quantity, 0);
+                    return { ...drug, totalStock };
+                });
+
+                setDrugs(drugsWithStock);
                 setSelectedGroup(group);
                 setIsModalOpen(true);
             })

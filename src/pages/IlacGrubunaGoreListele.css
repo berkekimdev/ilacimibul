@@ -1,14 +1,39 @@
-table {
+/* src/pages/IlacGrubunaGoreListele.css */
+.ilac-listesi {
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  .ilac-listesi table {
     width: 100%;
     border-collapse: collapse;
-}
-
-th, td {
+  }
+  
+  .ilac-listesi th,
+  .ilac-listesi td {
+    padding: 10px;
     border: 1px solid #ddd;
-    padding: 8px;
     text-align: left;
-}
-
-th {
+  }
+  
+  .ilac-listesi th {
     background-color: #f4f4f4;
-}
+  }
+  
+  .ilac-listesi tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .ilac-listesi button {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .ilac-listesi button:hover {
+    background-color: #218838;
+  }
+  

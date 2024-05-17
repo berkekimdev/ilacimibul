@@ -1,10 +1,8 @@
+// src/components/Register.jsx
 import React, { useState, useEffect } from 'react';
 import './Register.css';
 import { allCitiesAndDistricts } from './allcitiesAndDistricts';
 import axios from 'axios';
-
-// Tüm şehir ve ilçe bilgilerini içeren obje
-
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -14,10 +12,27 @@ const Register = () => {
   const [district, setDistrict] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState(''); 
-  const [latitude, setLatitude] = useState(40.7128); // Örnek değer, dinamik olmalı veya formdan girilmeli
-  const [longitude, setLongitude] = useState(-74.0060); // Örnek değer, dinamik olmalı veya formdan girilmeli
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
   const [cities, setCities] = useState(Object.keys(allCitiesAndDistricts));
   const [districts, setDistricts] = useState([]);
+
+  useEffect(() => {
+    // Kullanıcıdan konum bilgilerini al
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        (error) => {
+          console.error('Konum bilgileri alınamadı:', error);
+        }
+      );
+    } else {
+      console.error('Tarayıcınız konum bilgilerini desteklemiyor.');
+    }
+  }, []);
 
   useEffect(() => {
     setDistricts(city ? allCitiesAndDistricts[city] : []);
