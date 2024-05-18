@@ -19,6 +19,7 @@ import DrugEczaneListesi from './pages/DrugEczaneListesi';
 import IlacEkle from './pages/IlacEkle';
 import IlacStokDegistir from './pages/IlacStokDegistir';
 import IlacGrubuListele from './pages/IlacGrubunaGoreListele';
+import AuthStatus from './components/AuthStatus';
 import './App.css';
 
 
@@ -28,6 +29,7 @@ function App() {
       <AuthProvider> {/* AuthProvider ile tüm Routes'ları sarmalayın */}
         <div className="App">
           <Header />
+          <AuthStatus />
           <Navbar />
           <Harfler />
           {/* Arka plan resmi için kullanılacak div'i ve Routes bileşenini sar */}
