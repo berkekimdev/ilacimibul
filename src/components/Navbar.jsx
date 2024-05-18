@@ -37,7 +37,7 @@ const Navbar = () => {
                 <div className="profile-dropdown">
                   <Link to="/ilacekle" onClick={() => setIsProfileMenuOpen(false)}>İlaç Ekle</Link>
                   <Link to="/ilacstokdegistir" onClick={() => setIsProfileMenuOpen(false)}>İlaç Stok Değiştir</Link>
-                  <Link to="/profil-bilgileri-degistir" onClick={() => setIsProfileMenuOpen(false)}>Profil Bilgilerini Değiştir</Link>
+                  <Link to="/profilguncelle" onClick={() => setIsProfileMenuOpen(false)}>Profil Bilgilerini Değiştir</Link>
                 </div>
               )}
             </div>

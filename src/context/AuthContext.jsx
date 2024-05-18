@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
@@ -34,8 +33,12 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
   };
 
+  const updateUser = (updatedUser) => {
+    setUser(updatedUser);
+  };
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, token, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, token, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

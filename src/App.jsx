@@ -20,6 +20,7 @@ import IlacEkle from './pages/IlacEkle';
 import IlacStokDegistir from './pages/IlacStokDegistir';
 import IlacGrubuListele from './pages/IlacGrubunaGoreListele';
 import AuthStatus from './components/AuthStatus';
+import Profile from './pages/Profile';
 import './App.css';
 
 
@@ -42,6 +43,7 @@ function App() {
               <Route path="/IlacGrubu" element={<IlacGrubu />} />
               <Route path="/EnYakinEczaneler" element={<NearestPharmacies />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/profilguncelle" element={<Profile />} />
               <Route path="/ilacgrubunagorelistele/:ilacGrubu" element={<IlacGrubuListele />} />
               <Route path="/drugsearch" element={<DrugSearch />} />
               <Route path="/ilacekle" element={<IlacEkle />} />
