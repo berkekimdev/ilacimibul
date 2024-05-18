@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import './Navbar.css'; // Stiller için CSS dosyası
 import { BsCapsule, BsThreeDotsVertical } from "react-icons/bs";
+import { useAuth } from '../context/AuthContext'; // AuthContext'i import et
 
 const Navbar = () => {
-  const isLoggedIn = !!localStorage.getItem('token');  // Kullanıcı giriş yapmış mı kontrolü
+  const { isLoggedIn, user, logout } = useAuth();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Token'ı silerek çıkış yap
+    logout(); // AuthContext'teki logout fonksiyonunu kullanarak çıkış yap
     window.location.href = '/'; // Ana sayfaya yönlendir
   };
 
@@ -38,6 +39,11 @@ const Navbar = () => {
                   <Link to="/ilacekle" onClick={() => setIsProfileMenuOpen(false)}>İlaç Ekle</Link>
                   <Link to="/ilacstokdegistir" onClick={() => setIsProfileMenuOpen(false)}>İlaç Stok Değiştir</Link>
                   <Link to="/profilguncelle" onClick={() => setIsProfileMenuOpen(false)}>Profil Bilgilerini Değiştir</Link>
+                  {user && user.authorities && user.authorities.includes('ROLE_ADMIN') && (
+                    <>
+                      <Link to="/kullaniciaktifet" onClick={() => setIsProfileMenuOpen(false)}>Kullanıcı Aktif Et</Link>
+                    </>
+                  )}
                 </div>
               )}
             </div>
