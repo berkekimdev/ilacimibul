@@ -1,0 +1,47 @@
+/* src/components/IlacEkle.css */
+.ilac-ekle-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ilac-ekle-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .ilac-ekle-form .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .ilac-ekle-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .ilac-ekle-form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .ilac-ekle-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .ilac-ekle-form button:hover {
+    background-color: #45a049;
+  }
+  
