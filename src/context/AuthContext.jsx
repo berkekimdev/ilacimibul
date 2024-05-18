@@ -1,12 +1,13 @@
 // src/context/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode'; // jwtDecode fonksiyonunu named import olarak kullan
+import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -14,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       const decodedToken = jwtDecode(token);
       setUser(decodedToken);
       setIsLoggedIn(true);
-      console.log('Decoded token:', decodedToken); // Token'ı konsola logla
+      setToken(token);
     }
   }, []);
 
@@ -23,17 +24,18 @@ export const AuthProvider = ({ children }) => {
     const decodedToken = jwtDecode(token);
     setUser(decodedToken);
     setIsLoggedIn(true);
-    console.log('Decoded token on login:', decodedToken); // Token'ı konsola logla
+    setToken(token);
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
     setIsLoggedIn(false);
+    setToken(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

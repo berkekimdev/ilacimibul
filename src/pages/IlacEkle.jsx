@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './IlacEkle.css';
+import { useAuth } from '../context/AuthContext';
 
 const IlacEkle = () => {
   const [ilacAdi, setIlacAdi] = useState('');
   const [ilacGrubu, setIlacGrubu] = useState('');
   const [ilacEtkenMaddesi, setIlacEtkenMaddesi] = useState('');
-  const [drugs, setDrugs] = useState([]);
-
-  useEffect(() => {
-    const fetchDrugs = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/drugs');
-        setDrugs(response.data);
-      } catch (error) {
-        console.error('İlaçlar alınırken hata oluştu:', error);
-      }
-    };
-
-    fetchDrugs();
-  }, []);
+  const [error, setError] = useState('');
+  const { token } = useAuth(); // Token'ı AuthContext'ten alın
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,11 +19,19 @@ const IlacEkle = () => {
     };
 
     try {
-      await axios.post('http://localhost:8080/api/drugs', newDrug);
+      await axios.post(
+        'http://localhost:8080/api/drugs',
+        newDrug,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`, // Bearer token'ı Authorization başlığına ekleyin
+          },
+        }
+      );
       alert('İlaç başarıyla eklendi');
     } catch (error) {
       console.error('İlaç eklerken hata oluştu:', error);
-      alert('İlaç eklenirken bir hata oluştu');
+      setError('İlaç eklenirken bir hata oluştu');
     }
   };
 
@@ -44,19 +41,13 @@ const IlacEkle = () => {
       <form className="ilac-ekle-form" onSubmit={handleSubmit}>
         <div className="input-group">
           <label htmlFor="ilacAdi">İlaç Adı:</label>
-          <select
+          <input
+            type="text"
             id="ilacAdi"
             value={ilacAdi}
             onChange={(e) => setIlacAdi(e.target.value)}
             required
-          >
-            <option value="">İlaç Seçin</option>
-            {drugs.map((drug) => (
-              <option key={drug.id} value={drug.ilacAdi}>
-                {drug.ilacAdi}
-              </option>
-            ))}
-          </select>
+          />
         </div>
         <div className="input-group">
           <label htmlFor="ilacGrubu">İlaç Grubu:</label>
@@ -79,6 +70,7 @@ const IlacEkle = () => {
           />
         </div>
         <button type="submit">İlaç Ekle</button>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
     </div>
   );
