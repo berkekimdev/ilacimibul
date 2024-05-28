@@ -8,10 +8,19 @@ const AdminBreadboard = () => {
     history.push('/kullaniciaktifet');
   };
 
+  const handleIlacSil = () => {
+    history.push('/ilacsil');
+  };
+
   return (
     <div>
       {/* Diğer Breadboard içeriği */}
-      <button onClick={handleKullaniciAktifEt}>Kullanıcı Aktif Et</button>
+      {user && user.role === 'admin' && (
+        <>
+          <button onClick={handleKullaniciAktifEt}>Kullanıcı Aktif Et</button>
+          <button onClick={handleIlacSil}>İlaç Sil</button>
+        </>
+      )}
     </div>
   );
 };

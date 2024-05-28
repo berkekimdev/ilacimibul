@@ -36,7 +36,7 @@ const NearestPharmacies = () => {
       // Eczane verilerini al
       axios.get('http://localhost:8080/api/users')
         .then((response) => {
-          const memberPharmacies = response.data.filter(user => user.role === 'MEMBER');
+          const memberPharmacies = response.data.filter(user => user.role === 'MEMBER'  && user.active === true );
           const pharmaciesWithDistance = memberPharmacies.map(pharmacy => {
             const distance = calculateDistance(userLocation.latitude, userLocation.longitude, pharmacy.latitude, pharmacy.longitude);
             return { ...pharmacy, distance };

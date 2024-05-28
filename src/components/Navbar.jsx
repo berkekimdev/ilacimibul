@@ -42,6 +42,7 @@ const Navbar = () => {
                   {user && user.authorities && user.authorities.includes('ROLE_ADMIN') && (
                     <>
                       <Link to="/kullaniciaktifet" onClick={() => setIsProfileMenuOpen(false)}>Kullanıcı Aktif Et</Link>
+                      <Link to="/ilacsil" onClick={() => setIsProfileMenuOpen(false)}>İlaç Sil</Link>
                     </>
                   )}
                 </div>

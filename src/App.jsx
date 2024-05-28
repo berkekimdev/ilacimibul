@@ -23,8 +23,8 @@ import AuthStatus from './components/AuthStatus';
 import Profile from './pages/Profile';
 import StokBilgileri from './pages/StokBilgileri';
 import KullaniciAktifEt from './pages/KullaniciAktifEt'; 
+import IlacSil from './pages/IlacSil';
 import './App.css';
-
 
 function App() {
   return (
@@ -50,6 +50,7 @@ function App() {
               <Route path="/ilacgrubunagorelistele/:ilacGrubu" element={<IlacGrubuListele />} />
               <Route path="/kullaniciaktifet" element={<KullaniciAktifEt />} />
               <Route path="/drugsearch" element={<DrugSearch />} />
+              <Route path="/ilacsil" element={<IlacSil />} />
               <Route path="/ilacekle" element={<IlacEkle />} />
               <Route path="/ilacstokdegistir" element={<IlacStokDegistir />} />
               <Route path="/drugeczanelistesi/:drugId" element={<DrugEczaneListesi />} />
