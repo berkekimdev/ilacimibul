@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
-import './Navbar.css'; // Stiller için CSS dosyası
+import { Link } from 'react-router-dom';
+import './Navbar.css'; 
 import { BsCapsule, BsThreeDotsVertical } from "react-icons/bs";
-import { useAuth } from '../context/AuthContext'; // AuthContext'i import et
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const { isLoggedIn, user, logout } = useAuth();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    logout(); // AuthContext'teki logout fonksiyonunu kullanarak çıkış yap
-    window.location.href = '/'; // Ana sayfaya yönlendir
+    logout(); 
+    window.location.href = '/'; 
   };
 
   const toggleProfileMenu = () => {
@@ -43,6 +43,7 @@ const Navbar = () => {
                     <>
                       <Link to="/kullaniciaktifet" onClick={() => setIsProfileMenuOpen(false)}>Kullanıcı Aktif Et</Link>
                       <Link to="/ilacsil" onClick={() => setIsProfileMenuOpen(false)}>İlaç Sil</Link>
+                      <Link to="/updatedrug" onClick={() => setIsProfileMenuOpen(false)}>İlaç Güncelle</Link> {/* Yeni eklenen link */}
                     </>
                   )}
                 </div>

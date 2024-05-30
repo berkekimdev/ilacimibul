@@ -17,6 +17,7 @@ import IlacGrubu from './pages/IlacGrubu';
 import NearestPharmacies from './pages/NearestPharmacies';
 import DrugEczaneListesi from './pages/DrugEczaneListesi';
 import IlacEkle from './pages/IlacEkle';
+import UpdateDrug from './pages/UpdateDrug';
 import IlacStokDegistir from './pages/IlacStokDegistir';
 import IlacGrubuListele from './pages/IlacGrubunaGoreListele';
 import SearchResults from './pages/SearchResults';
@@ -27,6 +28,7 @@ import IlacSil from './pages/IlacSil';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import AuthStatus from './components/AuthStatus';
+import EczaneListele from './pages/EczaneListele';
 
 function App() {
   return (
@@ -41,7 +43,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Anasayfa />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/Eczaneler" element={<EczaneAra />} />
+              <Route path="/Eczaneler" element={<EczaneListele />} />
               <Route path="/Ilaclar" element={<Ilaclar />} />
               <Route path="/IlacGrubu" element={<IlacGrubu />} />
               <Route path="/EnYakinEczaneler" element={<NearestPharmacies />} />
@@ -64,6 +66,9 @@ function App() {
               } />
               <Route path="/ilacstokdegistir" element={
                 <ProtectedRoute roles={['Admin', 'Member']} element={IlacStokDegistir} />
+              } />
+               <Route path="/updatedrug" element={
+                <ProtectedRoute roles={['Admin']} element={UpdateDrug} />
               } />
               <Route path="/drugeczanelistesi/:drugId" element={<DrugEczaneListesi />} />
               <Route path="/nobetcieczaneler" element={<DutyPharmacies />} />

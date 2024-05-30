@@ -1,0 +1,70 @@
+.eczane-listele-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .eczane-listele-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .eczane-listele-form {
+    margin-bottom: 20px;
+  }
+  
+  .eczane-listele-form .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .eczane-listele-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .eczane-listele-form select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+  
+  .eczane-listele-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+  }
+  
+  .eczane-listele-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .eczane-listele-sonuc table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .eczane-listele-sonuc th,
+  .eczane-listele-sonuc td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .eczane-listele-sonuc th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Header.css'; // Header stil dosyası
+import './Header.css';
 import headerImage from '../images/Logo3.svg';
 import logo from '../images/Vitamins.svg';
 import { FaSearchPlus } from "react-icons/fa";
@@ -37,10 +37,11 @@ const Header = () => {
         <select value={searchType} onChange={(e) => setSearchType(e.target.value)} className="search-select">
           <option value="ilac">İlaç</option>
           <option value="ilacGrubu">İlaç Grubu</option>
+          <option value="etkenMadde">Etken Madde</option>
         </select>
         <input
           type="text"
-          placeholder="İlaç ismi veya İlaç Grubu Aratın"
+          placeholder="İlaç ismi, grubu veya etken madde aratın"
           className="search-input"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
