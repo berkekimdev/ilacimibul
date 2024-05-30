@@ -1,39 +1,10 @@
 .eczane-listele-container {
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: auto;
   }
-  
-  .eczane-listele-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .eczane-listele-form {
-    margin-bottom: 20px;
-  }
-  
-  .eczane-listele-form .input-group {
-    margin-bottom: 15px;
-  }
-  
-  .eczane-listele-form label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .eczane-listele-form select {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 0 auto;
-  }
-  
-  .eczane-listele-form button {
+
+ .eczane-listele-form button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -50,21 +21,70 @@
     background-color: #45a049;
   }
   
-  .eczane-listele-sonuc table {
+  .eczane-listele-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .eczane-listele-form {
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 10px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .input-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .eczane-listele-tablosu {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
   }
   
-  .eczane-listele-sonuc th,
-  .eczane-listele-sonuc td {
-    border: 1px solid #ddd;
-    padding: 8px;
+  .eczane-listele-tablosu th,
+  .eczane-listele-tablosu td {
+    border: 1px solid #ccc;
+    padding: 10px;
     text-align: left;
   }
   
-  .eczane-listele-sonuc th {
+  .eczane-listele-tablosu th {
+    background-color: #f4f4f4;
+  }
+  
+  .eczane-listele-tablosu tbody tr:nth-child(odd) {
+    background-color: #fafafa;
+  }
+  
+  .eczane-listele-tablosu tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .konum-goster-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
     background-color: #4CAF50;
     color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .konum-goster-link:hover {
+    background-color: #45a049;
   }
   

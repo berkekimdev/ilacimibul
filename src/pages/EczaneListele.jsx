@@ -44,7 +44,8 @@ const EczaneListele = () => {
       const response = await axios.get('http://localhost:8080/api/users/search', {
         params: { city: selectedCity, district: selectedDistrict }
       });
-      setUsers(response.data);
+      const filteredUsers = response.data.filter(user => user.role !== 'ADMIN');
+      setUsers(filteredUsers);
     } catch (error) {
       console.error('Eczaneler aranırken hata oluştu:', error);
     }
@@ -82,7 +83,7 @@ const EczaneListele = () => {
       </div>
       <div className="eczane-listele-sonuc">
         {users.length > 0 ? (
-          <table>
+          <table className="eczane-listele-tablosu">
             <thead>
               <tr>
                 <th>Eczane Adı</th>
@@ -91,6 +92,7 @@ const EczaneListele = () => {
                 <th>Adres</th>
                 <th>Telefon</th>
                 <th>Email</th>
+                <th>Konum</th>
               </tr>
             </thead>
             <tbody>
@@ -102,6 +104,16 @@ const EczaneListele = () => {
                   <td>{user.address}</td>
                   <td>{user.phoneNumber}</td>
                   <td>{user.email}</td>
+                  <td>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${user.latitude},${user.longitude}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="konum-goster-link"
+                    >
+                      Konumu Göster
+                    </a>
+                  </td>
                 </tr>
               ))}
             </tbody>
