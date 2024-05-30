@@ -12,7 +12,11 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedToken = jwtDecode(token);
-      setUser(decodedToken);
+      const role = decodedToken.authorities.includes('ROLE_ADMIN') ? 'Admin' : 'Member';
+      setUser({
+        ...decodedToken,
+        role: role // Kullanıcının rolünü ekle
+      });
       setIsLoggedIn(true);
       setToken(token);
     }
@@ -21,7 +25,11 @@ export const AuthProvider = ({ children }) => {
   const login = (token) => {
     localStorage.setItem('token', token);
     const decodedToken = jwtDecode(token);
-    setUser(decodedToken);
+    const role = decodedToken.authorities.includes('ROLE_ADMIN') ? 'Admin' : 'Member';
+    setUser({
+      ...decodedToken,
+      role: role // Kullanıcının rolünü ekle
+    });
     setIsLoggedIn(true);
     setToken(token);
   };

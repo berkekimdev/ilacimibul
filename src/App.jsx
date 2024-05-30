@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext'; // AuthProvider'ı import et
+import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -20,23 +20,23 @@ import IlacEkle from './pages/IlacEkle';
 import IlacStokDegistir from './pages/IlacStokDegistir';
 import IlacGrubuListele from './pages/IlacGrubunaGoreListele';
 import SearchResults from './pages/SearchResults';
-import AuthStatus from './components/AuthStatus';
 import Profile from './pages/Profile';
 import StokBilgileri from './pages/StokBilgileri';
-import KullaniciAktifEt from './pages/KullaniciAktifEt'; 
+import KullaniciAktifEt from './pages/KullaniciAktifEt';
 import IlacSil from './pages/IlacSil';
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
+import AuthStatus from './components/AuthStatus';
 
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider> {/* AuthProvider ile tüm Routes'ları sarmalayın */}
+      <AuthProvider>
         <div className="App">
           <Header />
           <AuthStatus />
           <Navbar />
           <Harfler />
-          {/* Arka plan resmi için kullanılacak div'i ve Routes bileşenini sar */}
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Anasayfa />} />
@@ -46,15 +46,25 @@ function App() {
               <Route path="/IlacGrubu" element={<IlacGrubu />} />
               <Route path="/EnYakinEczaneler" element={<NearestPharmacies />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/profilguncelle" element={<Profile />} />
+              <Route path="/profilguncelle" element={
+                <ProtectedRoute roles={['Admin', 'Member']} element={Profile} />
+              } />
               <Route path="/profile" element={<StokBilgileri />} />
               <Route path="/ilacgrubunagorelistele/:ilacGrubu" element={<IlacGrubuListele />} />
-              <Route path="/kullaniciaktifet" element={<KullaniciAktifEt />} />
+              <Route path="/kullaniciaktifet" element={
+                <ProtectedRoute roles={['Admin']} element={KullaniciAktifEt} />
+              } />
               <Route path="/drugsearch" element={<DrugSearch />} />
               <Route path="/search" element={<SearchResults />} />
-              <Route path="/ilacsil" element={<IlacSil />} />
-              <Route path="/ilacekle" element={<IlacEkle />} />
-              <Route path="/ilacstokdegistir" element={<IlacStokDegistir />} />
+              <Route path="/ilacsil" element={
+                <ProtectedRoute roles={['Admin']} element={IlacSil} />
+              } />
+              <Route path="/ilacekle" element={
+                <ProtectedRoute roles={['Admin', 'Member']} element={IlacEkle} />
+              } />
+              <Route path="/ilacstokdegistir" element={
+                <ProtectedRoute roles={['Admin', 'Member']} element={IlacStokDegistir} />
+              } />
               <Route path="/drugeczanelistesi/:drugId" element={<DrugEczaneListesi />} />
               <Route path="/nobetcieczaneler" element={<DutyPharmacies />} />
               <Route path="/harfegoreara/:harf" element={<HarfSayfasi />} />
