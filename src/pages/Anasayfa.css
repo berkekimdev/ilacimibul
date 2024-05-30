@@ -1,41 +1,52 @@
-.container {
+.anasayfa-container {
     display: flex;
     width: 100%;
-    height: calc(100vh - var(--footer-height) - 5px); /* Footer'dan 5px yukarıda bitmesini sağla */
+    height: calc(100vh - var(--footer-height) - var(--navbar-height)); /* Navbar ve Footer'ın altında ve üstünde kalacak */
     box-sizing: border-box;
-}
-
-.svg-container {
-    width: 75%;
-    height: 100%;
-    box-sizing: border-box;
+    margin-bottom: 20px; /* Footer ile ana konteyner arasında boşluk bırak */
+  }
+  
+  .svg-container {
+    flex: 3; /* %75 genişlik */
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* SVG'nin boyutu aşarsa gizle */
-}
-
-.svg-container img {
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  .svg-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
-
-.content {
-    flex: 3;  /* İçerik bölümüne daha fazla yer ayır */
-    width: 100%; /* Geri kalan genişliği doldur */
+    object-fit: cover; /* SVG'nin tüm alanı kaplamasını sağlar */
+  }
+  
+  .alanlar-container {
+    flex: 1; /* %25 genişlik */
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Taşan içerikleri gizle */
     box-sizing: border-box;
-}
-
-.alan1, .alan2, .alan3 {
-    /* Eşit yükseklikte büyümesini sağla *//* İçerik fazla olduğunda kaydırılabilir */
+    height: calc(100% - 20px); /* Boşluğu hesaba katmak için */
+  }
+  
+  .alan1, .alan2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
+    margin: 10px;
     padding: 10px;
-    border: 1px solid #ccc; /* Görsel ayrım için */
-    height: 180px;
-    overflow: scroll;
-    
-}
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow-y: auto; /* Kaydırılabilir hale getirmek için */
+  }
+  
+  .drug-link {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .drug-link:hover {
+    color: darkgreen;
+  }
+  

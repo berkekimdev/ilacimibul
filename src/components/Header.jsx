@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './Header.css'; // Header stil dosyası
-import headerImage from '../images/headerpng.png';
-import logo from '../images/Logo1.png';
-
+import headerImage from '../images/Logo3.svg';
+import logo from '../images/Vitamins.svg';
 import { FaSearchPlus } from "react-icons/fa";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [searchType, setSearchType] = useState('ilac');
   const [query, setQuery] = useState('');
+  const navigate = useNavigate();
 
   const handleSearch = async () => {
     try {
@@ -18,16 +19,19 @@ const Header = () => {
           query: query,
         },
       });
-      // Burada yönlendirme ve sonuçların işlenmesi yapılacak
-      console.log(response.data);
+      if (response.data.length > 0) {
+        navigate('/search', { state: { query: query, type: searchType, results: response.data } });
+      } else {
+        alert('Sonuç bulunamadı.');
+      }
     } catch (error) {
       console.error('Arama sırasında hata oluştu:', error);
+      alert('Arama sırasında bir hata oluştu. Lütfen tekrar deneyin.');
     }
   };
 
   return (
     <div className="header">
-      <img src={logo} alt="Logo" className="logo" />
       <img src={headerImage} alt="Header" className="header-image" />
       <div className="search-container">
         <select value={searchType} onChange={(e) => setSearchType(e.target.value)} className="search-select">

@@ -1,25 +1,84 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Anasayfa.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../images/sihirli.svg';
 
 const Anasayfa = () => {
+  const [topSearchedDrugs, setTopSearchedDrugs] = useState([]);
+  const [latestDrugs, setLatestDrugs] = useState([]);
+  const [svgHeight, setSvgHeight] = useState(0); // SVG'nin yüksekliğini tutmak için state
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchTopSearchedDrugs = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/drugs/top-searched');
+        setTopSearchedDrugs(response.data);
+      } catch (error) {
+        console.error('En çok aranan ilaçlar getirilirken hata oluştu:', error);
+      }
+    };
+
+    const fetchLatestDrugs = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/drugs/latest');
+        setLatestDrugs(response.data);
+      } catch (error) {
+        console.error('En son eklenen ilaçlar getirilirken hata oluştu:', error);
+      }
+    };
+
+    fetchTopSearchedDrugs();
+    fetchLatestDrugs();
+  }, []);
+
+  useEffect(() => {
+    const svgImg = document.querySelector('.svg-container img');
+    if (svgImg) {
+      svgImg.onload = () => {
+        setSvgHeight(svgImg.offsetHeight); // SVG'nin yüksekliğini state'e kaydet
+      };
+    }
+  }, []);
+
+  const handleDrugClick = (drugName) => {
+    navigate('/search', { state: { query: drugName, type: 'ilac' } });
+  };
+
   return (
-    <div className="container">
+    <div className="anasayfa-container">
       <div className="svg-container">
-        <img src={backgroundImage} alt="Arka Plan" />
+        <img src={backgroundImage} alt="Arka Plan" onLoad={(e) => setSvgHeight(e.target.offsetHeight)} /> {/* SVG'nin yüklenmesi tamamlandığında yüksekliğini ayarla */}
       </div>
-      <div className="content">
+      <div className="alanlar-container" style={{ height: svgHeight }}> {/* SVG'nin yüksekliğini uygula */}
         <div className="alan1">
-          <h1>Yeni İlaçlar</h1>
-          <p>İçerik detayları burada yer alacak. Her alanın kendi scroll barı vardır. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolor maiores cumque sed quibusdam autem nisi accusamus recusandae aspernatur vitae sit odit mollitia voluptas ipsa, et culpa qui molestias laudantium! Minus, quisquam accusantium. Placeat veritatis nulla provident consequatur. Quia eum autem officiis optio, expedita ad excepturi, quam distinctio exercitationem ullam temporibus doloribus odio amet fuga labore aliquam qui nam esse quis quibusdam tenetur cumque, ab itaque veritatis. Id, ab. Quia voluptas assumenda quos aspernatur? Vel ipsa asperiores, aliquid enim nobis, alias quis consequuntur, numquam ex eveniet omnis quaerat temporibus fuga magni mollitia nisi error. Dolorem aut eum animi assumenda voluptas, fugiat molestias voluptates beatae reiciendis? Nostrum, voluptatum cumque enim soluta eveniet rem cupiditate libero distinctio esse rerum tenetur illum, dolorem voluptatem eos fugit atque nesciunt porro inventore. Sint corrupti eveniet quo facilis reprehenderit animi perferendis, tempora aliquam unde deleniti magnam deserunt error est sapiente quidem maxime similique recusandae delectus officiis architecto vitae quaerat. Blanditiis soluta dolorum amet reiciendis id tempore numquam quasi fuga, porro perferendis, repellat alias ex, quam voluptatum eaque tenetur libero nobis incidunt accusantium ad natus. Ipsam consequatur quo ullam sed eveniet non obcaecati quae ad dolorem, vel quod quos voluptatem accusamus, nesciunt debitis ab. Distinctio quis fugiat maxime, sequi quisquam sunt impedit beatae expedita earum harum qui soluta eius ipsum odit omnis. Voluptatum ipsum nulla asperiores eveniet! Odio eius ipsa dolorum laudantium aliquid, adipisci autem fugit ad nulla magni. Veniam debitis laudantium voluptatem. Suscipit vel harum voluptates rem. Earum facere ipsum distinctio eos aut quo architecto odit, perferendis, iusto dignissimos ipsa voluptates ea placeat corrupti dolorum velit ab. Eius, nisi perspiciatis explicabo asperiores molestiae eos praesentium saepe? Voluptates commodi dolorum fuga omnis error vitae quaerat corporis, odit obcaecati id at, fugit quidem quibusdam perspiciatis! Laboriosam, voluptatem et magni animi nihil totam possimus illo placeat, id odit delectus?</p>
+          <h1>En Son Eklenen İlaçlar</h1>
+          {latestDrugs.length > 0 ? (
+            <ul>
+              {latestDrugs.map((drug, index) => (
+                <li key={index} onClick={() => handleDrugClick(drug.ilacAdi)} className="drug-link">
+                  {drug.ilacAdi} - {drug.ilacGrubu} - {drug.ilacEtkenMaddesi}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>En son eklenen ilaçlar bulunamadı.</p>
+          )}
         </div>
         <div className="alan2">
-          <h2>İkinci Alan</h2>
-          <p>İçerik detayları burada yer alacak. Her alanın kendi scroll barı vardır.</p>
-        </div>
-        <div className="alan3">
           <h2>En Çok Aranan İlaçlar</h2>
-          <p>İçerik detayları burada yer alacak. Her alanın kendi scroll barı vardır.</p>
+          {topSearchedDrugs.length > 0 ? (
+            <ol>
+              {topSearchedDrugs.map((drug, index) => (
+                <li key={index} onClick={() => handleDrugClick(drug.ilacAdi)} className="drug-link">
+                  {index + 1}. {drug.ilacAdi}
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p>En çok aranan ilaçlar bulunamadı.</p>
+          )}
         </div>
       </div>
     </div>

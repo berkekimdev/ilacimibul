@@ -19,6 +19,7 @@ import DrugEczaneListesi from './pages/DrugEczaneListesi';
 import IlacEkle from './pages/IlacEkle';
 import IlacStokDegistir from './pages/IlacStokDegistir';
 import IlacGrubuListele from './pages/IlacGrubunaGoreListele';
+import SearchResults from './pages/SearchResults';
 import AuthStatus from './components/AuthStatus';
 import Profile from './pages/Profile';
 import StokBilgileri from './pages/StokBilgileri';
@@ -50,6 +51,7 @@ function App() {
               <Route path="/ilacgrubunagorelistele/:ilacGrubu" element={<IlacGrubuListele />} />
               <Route path="/kullaniciaktifet" element={<KullaniciAktifEt />} />
               <Route path="/drugsearch" element={<DrugSearch />} />
+              <Route path="/search" element={<SearchResults />} />
               <Route path="/ilacsil" element={<IlacSil />} />
               <Route path="/ilacekle" element={<IlacEkle />} />
               <Route path="/ilacstokdegistir" element={<IlacStokDegistir />} />

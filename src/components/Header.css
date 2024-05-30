@@ -7,10 +7,17 @@
   }
   
   .logo {
-    margin-right: 20px; /* Logo, sola yapışık olacak şekilde ayarla */
-    width: 100px; /* Logo boyutunu küçült */
-    
-  }
+    margin-right: 20px;
+    height: 50px; /* Logo yüksekliğini sabit bir değere ayarla */
+    width: 300px; /* Logo genişliğini isteğinize göre ayarlayın */
+    display: flex; /* Flexbox modelini kullan */
+    align-items: center; /* İçerikleri dikey olarak ortala */
+}
+
+.logo img {
+    height: 100%; /* SVG dosyasını konteyner yüksekliğine göre otomatik olarak ayarla */
+    width: auto; /* Genişlik, yükseklik oranını koruyacak şekilde otomatik ayarlanır */
+}
   
   .header-image {
     
