@@ -1,19 +1,46 @@
-button {
-    padding: 10px 20px; /* Buton içeriğine boşluk ekleyin */
- margin-top: 20px; /* Butonlar arasında daha fazla boşluk bırakın */
- background-color: #4CAF50; /* Buton arka plan rengi yeşil */
- color: white; /* Buton metin rengi beyaz */
- border: none; /* Kenarlık kaldırın */
- border-radius: 4px; /* Buton köşelerini yuvarlayın */
- cursor: pointer; /* Cursor tipi olarak işaretçi kullanın */
- transition: background-color 0.3s; /* Arka plan rengi geçiş efekti */
- font-size: 16px; /* Buton metin boyutunu ayarlayın */
- margin-left: 50px; /* Butonların sol kenar boşluğunu ayarlayın */
-}
-
-.icon svg {
-
+.drug-details-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .drug-details-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .input-container input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 300px;
+  }
+  
+  .input-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+  }
+  
+  .input-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .icon svg {
     font-size: 24px;
-    margin-left: 5px; /* İkonu sağa 5 piksel kaydırır */
-    margin-top: 25px; /* İkonu aşağı 5 piksel kaydırır */
-}
+    margin-left: 5px;
+  }
+  

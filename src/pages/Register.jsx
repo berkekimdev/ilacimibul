@@ -74,47 +74,47 @@ const Register = () => {
 
     return (
         <div className="register-container">
-            <h2>Register</h2>
+            <h2>Kayıt</h2>
             <form className="register-form" onSubmit={handleSubmit}>
                 <div className="input-group">
                     <label htmlFor="email">Email:</label>
                     <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="pharmacyName">Pharmacy Name:</label>
+                    <label htmlFor="pharmacyName">Eczane Adı:</label>
                     <input type="text" id="pharmacyName" value={pharmacyName} onChange={(e) => setPharmacyName(e.target.value)} required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Şifre:</label>
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="address">Address:</label>
+                    <label htmlFor="address">Adres:</label>
                     <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="phoneNumber">Phone Number:</label>
+                    <label htmlFor="phoneNumber">Telefon Numarası:</label>
                     <input type="text" id="phoneNumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="city">City:</label>
+                    <label htmlFor="city">Şehir:</label>
                     <select id="city" value={city} onChange={(e) => setCity(e.target.value)} required>
-                        <option value="">Select a city</option>
+                        <option value="">Şehir Seçin</option>
                         {cities.map((cityName) => (
                             <option key={cityName} value={cityName}>{cityName}</option>
                         ))}
                     </select>
                 </div>
                 <div className="input-group">
-                    <label htmlFor="district">District:</label>
+                    <label htmlFor="district">İlçe:</label>
                     <select id="district" value={district} onChange={(e) => setDistrict(e.target.value)} required>
-                        <option value="">Select a district</option>
+                        <option value="">İlçe Seçin</option>
                         {districts.map((districtName) => (
                             <option key={districtName} value={districtName}>{districtName}</option>
                         ))}
                     </select>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Onayla</button>
             </form>
             <dialog ref={dialogRef}>
                 <h2>Kayıt işleminiz gerçekleşti</h2>

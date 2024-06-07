@@ -28,21 +28,21 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
+      <h2>Email:</h2>
       <form className="login-form" onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
+          <label></label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div>
           <label>Password:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Giriş</button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
       <div className="register-link">
-        <p>Don't have an account? <a href="/register">Register</a></p>
+        <p>Hesabın Yok mu? <a href="/register">Kayıt Ol</a></p>
       </div>
     </div>
   );
