@@ -11,7 +11,9 @@
   .navbar-content {
     width: 75%; /* Navbarın %75'ini kapla */
     display: flex;
-    justify-content: space-around; /* İçerikler arasında boşluk bırak */
+    justify-content: space-around;
+    align-items: center;
+    /* İçerikler arasında boşluk bırak */
   }
   
   .navbar a {

@@ -36,7 +36,6 @@ function App() {
       <AuthProvider>
         <div className="App">
           <Header />
-          <AuthStatus />
           <Navbar />
           <Harfler />
           <div className="main-content">
