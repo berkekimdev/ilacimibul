@@ -1,11 +1,12 @@
-// src/pages/Register.jsx
+// Gerekli modüller ve bileşenler import ediliyor
 import React, { useState, useEffect, useRef } from 'react';
 import './Register.css';
-import { allCitiesAndDistricts } from './allcitiesAndDistricts';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { allCitiesAndDistricts } from './allcitiesAndDistricts'; // Şehir ve ilçeler verisi import ediliyor
+import axios from 'axios'; // HTTP istekleri için axios kullanılıyor
+import { useNavigate } from 'react-router-dom'; // Sayfa yönlendirmeleri için kullanılıyor
 
 const Register = () => {
+    // Form state'leri tanımlanıyor
     const [email, setEmail] = useState('');
     const [pharmacyName, setPharmacyName] = useState('');
     const [password, setPassword] = useState('');
@@ -17,9 +18,10 @@ const Register = () => {
     const [longitude, setLongitude] = useState(null);
     const [cities, setCities] = useState(Object.keys(allCitiesAndDistricts));
     const [districts, setDistricts] = useState([]);
-    const dialogRef = useRef(null);
-    const navigate = useNavigate();
+    const dialogRef = useRef(null); // Dialog kutusu için referans
+    const navigate = useNavigate(); // Sayfa yönlendirmeleri için navigate fonksiyonu
 
+    // Kullanıcının konumunu al
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -36,10 +38,12 @@ const Register = () => {
         }
     }, []);
 
+    // Şehir değiştiğinde ilgili ilçeleri güncelle
     useEffect(() => {
         setDistricts(city ? allCitiesAndDistricts[city] : []);
     }, [city]);
 
+    // Form submit işlemi
     const handleSubmit = async (event) => {
         event.preventDefault();
         const registrationData = {
@@ -65,6 +69,7 @@ const Register = () => {
         }
     };
 
+    // Dialog kutusunu kapat ve giriş sayfasına yönlendir
     const closeDialog = () => {
         if (dialogRef.current) {
             dialogRef.current.close();

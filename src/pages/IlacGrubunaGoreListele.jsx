@@ -1,12 +1,14 @@
-// src/pages/IlacGrubunaGoreListele.jsx
+// Gerekli modülleri ve bileşenleri import et
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './IlacGrubunaGoreListele.css';
 
+// İlaç listesini gösteren alt bileşen
 const IlacListesi = ({ ilaclar }) => {
   const navigate = useNavigate();
 
+  // Eczanede Bul butonuna tıklandığında ilgili eczane listesi sayfasına yönlendiren fonksiyon
   const eczanedeBul = (ilacId) => {
     navigate(`/drugeczanelistesi/${ilacId}`);
   };
@@ -41,11 +43,13 @@ const IlacListesi = ({ ilaclar }) => {
   );
 };
 
+// İlaç grubuna göre ilaçları listeleyen ana bileşen
 const IlacGrubunaGoreListele = () => {
-  const [ilaclar, setIlaclar] = useState([]);
-  const { ilacGrubu } = useParams();
+  const [ilaclar, setIlaclar] = useState([]); // İlaçları tutmak için state
+  const { ilacGrubu } = useParams(); // URL parametresinden ilaç grubunu al
 
   useEffect(() => {
+    // API'den ilaçları ve stok bilgilerini çek
     const fetchIlaclar = async () => {
       try {
         // İlaçları ilaç grubuna göre çek
@@ -59,24 +63,24 @@ const IlacGrubunaGoreListele = () => {
         // İlaçların toplam stoklarını hesapla
         const ilaclarWithStock = fetchedIlaclar.map(ilac => {
           const totalStock = allStocks
-            .filter(stock => stock.drugId === ilac.id)
-            .reduce((sum, stock) => sum + stock.quantity, 0);
-          return { ...ilac, totalStock };
+            .filter(stock => stock.drugId === ilac.id) // İlaç ID'sine göre stokları filtrele
+            .reduce((sum, stock) => sum + stock.quantity, 0); // Toplam stok miktarını hesapla
+          return { ...ilac, totalStock }; // İlaç bilgisine toplam stok miktarını ekle
         });
 
-        setIlaclar(ilaclarWithStock);
+        setIlaclar(ilaclarWithStock); // İlaçları state'e ata
       } catch (error) {
-        console.error('İlaçları çekerken hata oluştu:', error);
+        console.error('İlaçları çekerken hata oluştu:', error); // Hata olursa konsola yaz
       }
     };
 
-    fetchIlaclar();
-  }, [ilacGrubu]);
+    fetchIlaclar(); // Fonksiyonu çağır
+  }, [ilacGrubu]); // `ilacGrubu` değiştiğinde tekrar çalışır
 
   return (
     <div>
       <h1>{ilacGrubu} Grubundaki İlaçlar</h1>
-      <IlacListesi ilaclar={ilaclar} />
+      <IlacListesi ilaclar={ilaclar} /> {/* İlaç listesini render et */}
     </div>
   );
 };

@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './IlacEkle.css';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext'; // AuthContext'ten kimlik doğrulama bilgilerini almak için kullanılır
 
 const IlacEkle = () => {
-  const [ilacAdi, setIlacAdi] = useState('');
-  const [ilacGrubu, setIlacGrubu] = useState('');
-  const [ilacEtkenMaddesi, setIlacEtkenMaddesi] = useState('');
-  const [error, setError] = useState('');
-  const { token } = useAuth(); // Token'ı AuthContext'ten alın
+  // Form alanları ve hata mesajı için state'ler
+  const [ilacAdi, setIlacAdi] = useState(''); // İlaç adı state'i
+  const [ilacGrubu, setIlacGrubu] = useState(''); // İlaç grubu state'i
+  const [ilacEtkenMaddesi, setIlacEtkenMaddesi] = useState(''); // İlaç etken maddesi state'i
+  const [error, setError] = useState(''); // Hata mesajı state'i
+  const { token } = useAuth(); // AuthContext'ten alınan token
 
+  // Form gönderildiğinde çalışacak fonksiyon
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Sayfanın yeniden yüklenmesini önler
+
+    // Yeni ilaç bilgilerini içeren nesne
     const newDrug = {
       ilacAdi,
       ilacGrubu,
@@ -19,17 +23,19 @@ const IlacEkle = () => {
     };
 
     try {
+      // Yeni ilaç bilgilerini API'ye POST isteği ile gönderir
       await axios.post(
         'http://localhost:8080/api/drugs',
         newDrug,
         {
           headers: {
-            'Authorization': `Bearer ${token}`, // Bearer token'ı Authorization başlığına ekleyin
+            'Authorization': `Bearer ${token}`, // Bearer token'ı Authorization başlığına ekler
           },
         }
       );
-      alert('İlaç başarıyla eklendi');
+      alert('İlaç başarıyla eklendi'); // Başarı mesajı gösterir
     } catch (error) {
+      // Hata oluşursa konsola hata mesajını yazar ve hata state'ini günceller
       console.error('İlaç eklerken hata oluştu:', error);
       setError('İlaç eklenirken bir hata oluştu');
     }
@@ -45,7 +51,7 @@ const IlacEkle = () => {
             type="text"
             id="ilacAdi"
             value={ilacAdi}
-            onChange={(e) => setIlacAdi(e.target.value)}
+            onChange={(e) => setIlacAdi(e.target.value)} // İlaç adı state'ini günceller
             required
           />
         </div>
@@ -55,7 +61,7 @@ const IlacEkle = () => {
             type="text"
             id="ilacGrubu"
             value={ilacGrubu}
-            onChange={(e) => setIlacGrubu(e.target.value)}
+            onChange={(e) => setIlacGrubu(e.target.value)} // İlaç grubu state'ini günceller
             required
           />
         </div>
@@ -65,12 +71,12 @@ const IlacEkle = () => {
             type="text"
             id="ilacEtkenMaddesi"
             value={ilacEtkenMaddesi}
-            onChange={(e) => setIlacEtkenMaddesi(e.target.value)}
+            onChange={(e) => setIlacEtkenMaddesi(e.target.value)} // İlaç etken maddesi state'ini günceller
             required
           />
         </div>
-        <button type="submit">İlaç Ekle</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit">İlaç Ekle</button> {/* Form gönderme butonu */}
+        {error && <p style={{ color: 'red' }}>{error}</p>} {/* Hata mesajı */}
       </form>
     </div>
   );

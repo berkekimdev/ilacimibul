@@ -4,17 +4,17 @@ import axios from 'axios';
 import './DrugEczaneListesi.css';
 
 const DrugEczaneListesi = () => {
-  const { drugId } = useParams();
-  const [eczaneStoklari, setEczaneStoklari] = useState([]);
+  const { drugId } = useParams(); // URL parametrelerinden drugId'yi alır
+  const [eczaneStoklari, setEczaneStoklari] = useState([]); // Eczane stoklarını tutacak state
 
   useEffect(() => {
     const fetchEczaneStoklari = async () => {
       try {
-        // İlaç stoklarını çek
+        // İlaç stoklarını API'den çeker
         const stocksResponse = await axios.get(`http://localhost:8080/api/drugstocks`);
-        const filteredStocks = stocksResponse.data.filter(stock => stock.drugId === parseInt(drugId));
+        const filteredStocks = stocksResponse.data.filter(stock => stock.drugId === parseInt(drugId)); // İlgili ilaç ID'sine göre filtreler
 
-        // Her bir stok için eczane bilgilerini çek
+        // Her bir stok için eczane bilgilerini API'den çeker ve stok verilerini zenginleştirir
         const enrichedStocks = await Promise.all(filteredStocks.map(async stock => {
           const userResponse = await axios.get(`http://localhost:8080/api/users/${stock.userId}`);
           return {
@@ -22,20 +22,20 @@ const DrugEczaneListesi = () => {
             eczaneAdi: userResponse.data.eczaneAdi,
             eczaneAdresi: userResponse.data.address,
             eczaneTelefonu: userResponse.data.phoneNumber,
-            eczaneLatitude: userResponse.data.latitude, // Enlem bilgisi
-            eczaneLongitude: userResponse.data.longitude // Boylam bilgisi
+            eczaneLatitude: userResponse.data.latitude, // Eczanenin enlem bilgisi
+            eczaneLongitude: userResponse.data.longitude // Eczanenin boylam bilgisi
           };
         }));
 
-        setEczaneStoklari(enrichedStocks);
+        setEczaneStoklari(enrichedStocks); // Zenginleştirilmiş stok verilerini state'e kaydeder
       } catch (error) {
         console.error('Eczanelerdeki ilaç stoklarını çekerken hata oluştu:', error);
-        setEczaneStoklari([]);  // Hata durumunda listeyi boşalt
+        setEczaneStoklari([]); // Hata durumunda listeyi boşalt
       }
     };
 
-    fetchEczaneStoklari();
-  }, [drugId]);
+    fetchEczaneStoklari(); // API çağrısını yapar
+  }, [drugId]); // drugId değiştiğinde useEffect yeniden çalışır
 
   return (
     <div className="eczane-stok-listesi-container">

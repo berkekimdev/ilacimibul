@@ -1,17 +1,20 @@
-// src/components/HarfSayfasi.jsx
+// React ve diğer gerekli kütüphaneler import ediliyor
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import './HarfSayfasi.css';
+import './HarfSayfasi.css'; // HarfSayfasi bileşeni için stil dosyası
 
+// IlacListesi bileşeni tanımlanıyor
 const IlacListesi = ({ ilaclar }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // useNavigate hook'u ile yönlendirme fonksiyonu
 
+  // Belirli bir ilacı eczanede bulmak için yönlendirme fonksiyonu
   const eczanedeBul = (ilacId) => {
-    navigate(`/drugeczanelistesi/${ilacId}`);
+    navigate(`/drugeczanelistesi/${ilacId}`); // İlaç ID'sine göre yönlendirme
   };
 
   return (
+    // İlaç listesini içeren tablo yapısı
     <div className="ilac-listesi">
       <table>
         <thead>
@@ -24,6 +27,7 @@ const IlacListesi = ({ ilaclar }) => {
           </tr>
         </thead>
         <tbody>
+          {/* İlaçlar dizisi üzerinden map ile geçilerek her bir ilaç için satır oluşturuluyor */}
           {ilaclar.map((ilac, index) => (
             <tr key={index}>
               <td>{ilac.ilacAdi}</td>
@@ -41,14 +45,16 @@ const IlacListesi = ({ ilaclar }) => {
   );
 };
 
+// HarfSayfasi bileşeni tanımlanıyor
 const HarfSayfasi = () => {
-  const [ilaclar, setIlaclar] = useState([]);
-  const { harf } = useParams();
+  const [ilaclar, setIlaclar] = useState([]); // İlaçları tutmak için state
+  const { harf } = useParams(); // URL parametresinden harfi al
 
   useEffect(() => {
+    // İlaçları harfe göre API'den çekmek için fonksiyon
     const fetchIlaclar = async () => {
       try {
-        // İlaçları harfe göre çek
+        // Belirli harf ile başlayan ilaçları çek
         const response = await axios.get(`http://localhost:8080/api/drugs/byFirstLetter?letter=${harf}`);
         const fetchedIlaclar = response.data;
 
@@ -56,7 +62,7 @@ const HarfSayfasi = () => {
         const stocksResponse = await axios.get(`http://localhost:8080/api/drugstocks`);
         const allStocks = stocksResponse.data;
 
-        // İlaçların toplam stoklarını hesapla
+        // İlaçların toplam stoklarını hesapla ve ilaç bilgilerine ekle
         const ilaclarWithStock = fetchedIlaclar.map(ilac => {
           const totalStock = allStocks
             .filter(stock => stock.drugId === ilac.id)
@@ -64,22 +70,23 @@ const HarfSayfasi = () => {
           return { ...ilac, totalStock };
         });
 
-        setIlaclar(ilaclarWithStock);
+        setIlaclar(ilaclarWithStock); // İlaçları state'e ata
       } catch (error) {
-        console.error('İlaçları çekerken hata oluştu:', error);
+        console.error('İlaçları çekerken hata oluştu:', error); // Hata mesajını konsola yaz
       }
     };
     
-    setIlaclar([]);
-    fetchIlaclar();
-  }, [harf]);
+    setIlaclar([]); // İlaçları sıfırla
+    fetchIlaclar(); // İlaçları çek
+  }, [harf]); // harf parametresi değiştiğinde useEffect tekrar çalışır
 
   return (
     <div>
       <h1>{harf} Harfi ile Başlayan İlaçlar</h1>
-      <IlacListesi ilaclar={ilaclar} />
+      <IlacListesi ilaclar={ilaclar} /> {/* İlaç listesini IlacListesi bileşenine geçir */}
     </div>
   );
 };
 
+// HarfSayfasi bileşeni dışa aktarılıyor
 export default HarfSayfasi;

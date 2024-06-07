@@ -1,13 +1,18 @@
+// Gerekli modüller ve bileşenler import ediliyor
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
 const StokBilgileri = () => {
+  // AuthContext'ten kullanıcı bilgileri ve token alınıyor
   const { user, token } = useAuth();
-  const [drugs, setDrugs] = useState([]);
-  const [userId, setUserId] = useState(null);
-  const [message, setMessage] = useState('');
 
+  // Component'in state'leri tanımlanıyor
+  const [drugs, setDrugs] = useState([]); // Kullanıcının ilaç stoklarını tutmak için
+  const [userId, setUserId] = useState(null); // Kullanıcı ID'sini tutmak için
+  const [message, setMessage] = useState(''); // Hata veya bilgilendirme mesajlarını tutmak için
+
+  // Kullanıcı email'ine göre kullanıcı ID'sini al
   const getUserIdByEmail = async (email) => {
     try {
       const response = await axios.get('http://localhost:8080/api/users', {
@@ -26,6 +31,7 @@ const StokBilgileri = () => {
     }
   };
 
+  // Component yüklendiğinde ve `user` veya `token` değiştiğinde çalışacak useEffect
   useEffect(() => {
     const fetchDrugStocks = async () => {
       const id = await getUserIdByEmail(user.sub);
@@ -58,7 +64,7 @@ const StokBilgileri = () => {
     <div>
       <h1>Profil Bilgileri</h1>
       <h2>İlaç Stokları</h2>
-      {message && <p>{message}</p>}
+      {message && <p>{message}</p>} {/* Hata veya bilgilendirme mesajını göster */}
       <table>
         <thead>
           <tr>

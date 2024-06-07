@@ -1,30 +1,34 @@
+// Gerekli modüller ve bileşenler import ediliyor
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './SearchResults.css'; // Stil dosyanızı buraya ekleyin
+import './SearchResults.css'; // Stil dosyasını import edin
 
 const SearchResults = () => {
+  // React Router'dan konum ve navigate fonksiyonları alınıyor
   const location = useLocation();
-  const { query, type } = location.state;
+  const { query, type } = location.state; // Arama sorgusu ve tipi state'den alınıyor
   const navigate = useNavigate();
-  const [results, setResults] = useState([]);
-  const [drugsWithStock, setDrugsWithStock] = useState([]);
+  const [results, setResults] = useState([]); // Arama sonuçları için state
+  const [drugsWithStock, setDrugsWithStock] = useState([]); // Stok bilgisi ile birlikte ilaçlar için state
 
+  // İlk useEffect: Arama sorgusunu API'ye gönder ve sonuçları al
   useEffect(() => {
     const fetchResults = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/drugs/search', {
           params: { query, type }
         });
-        setResults(response.data);
+        setResults(response.data); // Arama sonuçlarını state'e kaydet
       } catch (error) {
         console.error('Arama sonuçları alınırken hata oluştu:', error);
       }
     };
 
     fetchResults();
-  }, [query, type]);
+  }, [query, type]); // query ve type değiştiğinde useEffect tekrar çalışır
 
+  // İkinci useEffect: Arama sonuçlarına göre stok bilgilerini al
   useEffect(() => {
     if (results.length > 0) {
       const fetchStocks = async () => {
@@ -36,10 +40,10 @@ const SearchResults = () => {
             const totalStock = allStocks
               .filter(stock => stock.drugId === drug.id)
               .reduce((sum, stock) => sum + stock.quantity, 0);
-            return { ...drug, totalStock };
+            return { ...drug, totalStock }; // İlaç bilgilerine toplam stok miktarını ekle
           });
 
-          setDrugsWithStock(drugsWithStockInfo);
+          setDrugsWithStock(drugsWithStockInfo); // Stok bilgisi ile birlikte ilaçları state'e kaydet
         } catch (error) {
           console.error('Stok bilgileri alınırken hata oluştu:', error);
         }
@@ -47,8 +51,9 @@ const SearchResults = () => {
 
       fetchStocks();
     }
-  }, [results]);
+  }, [results]); // results değiştiğinde useEffect tekrar çalışır
 
+  // İlaç ID'sine göre eczane listesine yönlendirme fonksiyonu
   const eczanedeBul = (ilacId) => {
     navigate(`/drugeczanelistesi/${ilacId}`);
   };

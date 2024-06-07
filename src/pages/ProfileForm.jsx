@@ -1,10 +1,11 @@
+// Gerekli modüller ve bileşenler import ediliyor
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import './ProfileForm.css'; // CSS dosyasını ekleyin
 
 const ProfileForm = () => {
-  const { user, token } = useAuth();
+  const { user, token } = useAuth(); // AuthContext'ten kullanıcı bilgileri ve token'ı alın
   const [formData, setFormData] = useState({
     eczaneAdi: '',
     city: '',
@@ -40,6 +41,7 @@ const ProfileForm = () => {
     }
   };
 
+  // Kullanıcı verilerini fetch eder ve formu doldurur
   useEffect(() => {
     const fetchUserData = async () => {
       const id = await getUserIdByEmail(user.sub);
@@ -81,10 +83,12 @@ const ProfileForm = () => {
     }
   }, [user, token]);
 
+  // Formdaki değerler değiştikçe state'i günceller
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Form submit edildiğinde kullanıcı verilerini günceller
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!userId) {

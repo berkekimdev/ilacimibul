@@ -1,14 +1,13 @@
-// src/components/DrugModal.jsx
 import React from 'react';
 import './DrugModal.css'; // CSS dosyasını dahil et
 
 const DrugModal = ({ isOpen, closeModal, drugs, group }) => {
-    if (!isOpen) return null;
+    if (!isOpen) return null; // Modal açık değilse hiçbir şey render etmez
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <h2>{group} Grubundaki İlaçlar</h2>
+        <div className="modal-overlay"> {/* Modalın üst üste binen kısmı */}
+            <div className="modal-content"> {/* Modalın içeriği */}
+                <h2>{group} Grubundaki İlaçlar</h2> {/* Grup adına göre başlık */}
                 <table>
                     <thead>
                         <tr>
@@ -21,15 +20,15 @@ const DrugModal = ({ isOpen, closeModal, drugs, group }) => {
                     <tbody>
                         {drugs.map((drug, index) => (
                             <tr key={index}>
-                                <td>{drug.ilacAdi}</td>
-                                <td>{drug.ilacGrubu}</td>
-                                <td>{drug.ilacEtkenMaddesi}</td>
-                                <td>{drug.totalStock}</td>
+                                <td>{drug.ilacAdi}</td> {/* İlaç adı */}
+                                <td>{drug.ilacGrubu}</td> {/* İlaç grubu */}
+                                <td>{drug.ilacEtkenMaddesi}</td> {/* İlaç etken maddesi */}
+                                <td>{drug.totalStock}</td> {/* İlaç stoğu */}
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <button onClick={closeModal}>Kapat</button>
+                <button onClick={closeModal}>Kapat</button> {/* Modalı kapatmak için buton */}
             </div>
         </div>
     );
