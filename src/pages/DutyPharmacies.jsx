@@ -9,7 +9,7 @@ function DutyPharmacies() {
 
   const fetchPharmacies = async () => {
     try {
-      const response = await axios.get("https://www.nosyapi.com/apiv2/service/pharmacies-on-duty/cities", {
+      const response = await axios.get("https://www.nosyapi.com/apiv2/service/pharmacies-on-duty", {
         params: { city },
         headers: {
           "X-NSYP": "BSGSmWLxuU9mxwckV5tY48VWYxjQ2ev9syVqCp3GDM4al6NEKEB9gMBOHDVk"
@@ -39,14 +39,16 @@ function DutyPharmacies() {
             <thead>
               <tr>
                 <th>Eczane İsmi</th>
+                <th>İlçe</th>
                 <th>Adres</th>
               </tr>
             </thead>
             <tbody>
               {pharmacies.map((pharmacy, index) => (
                 <tr key={index}>
-                  <td>{pharmacy.cities}</td>
-                  <td>{pharmacy.slug}</td>
+                  <td>{pharmacy.pharmacyName}</td>
+                  <td>{pharmacy.district}</td>
+                  <td>{pharmacy.address}</td>
                 </tr>
               ))}
             </tbody>
